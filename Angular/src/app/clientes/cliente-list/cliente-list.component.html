@@ -1,0 +1,22 @@
+ <div class="row col-md-2">
+  <button class="btn btn-success" (click)="novoCliente()" ><i class="fas fa-plus"></i>Novo</button>
+</div>
+<hr>
+<table class="table table-hover">
+  <td>Nome</td>
+  <td>Data de Nascimento</td>
+  <td>Sexo</td>
+  <td>Editar</td>
+  <td>Excluir</td>
+  <tr *ngFor="let cl of service.list">
+    <td (click)="visualizarCadastro(cl)">{{cl.Nome}}</td>
+    <td (click)="visualizarCadastro(cl)">{{cl.DataDeNascimento | date:'dd/MM/yyyy'}}</td>
+    <td (click)="visualizarCadastro(cl)">{{cl.Sexo}}</td>
+    <td>
+      <i class="fas fa-edit" data-toggle="tooltip" title="Editar" (click)="editarCadastro(cl)"></i>
+    </td>
+    <td>
+      <i class="far fa-trash-alt fa-lg text-danger" data-toggle="tooltip" title="Excluir" (click)="botaoExcluir(cl.Id)"></i>
+    </td>
+  </tr>
+</table>

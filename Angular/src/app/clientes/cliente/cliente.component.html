@@ -1,0 +1,109 @@
+<div class="d-flex justify-content-center">
+  <form #form="ngForm" autocomplete="off" (submit)="onSubmit()">
+    <input type="hidden" name="Id" [value]="service.formData.Id">
+    <div class="form-group">
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <div class="input-group-text bg-white">
+            <i class="fas fa-signature" [class.red-icon]="Nome.invalid && Nome.touched"></i>
+          </div>
+        </div>
+        <input name="Nome" #Nome="ngModel" [readonly]="service.readonly" [(ngModel)]="service.formData.Nome" class="form-control" placeholder="Nome" required>
+      </div>
+    </div>
+      <div class="form-group">
+        <div *ngIf="service.readonly" class="input-group">
+          <div class="input-group-prepend">
+            <div class="input-group-text bg-white">
+              <i class="fas fa-calendar-day"></i>
+            </div>
+          </div>
+            <input type="text" [readonly]="service.readonly" data-toggle="tooltip" title="Data de Nascimento" id="DataDeNascimento" name="DataDeNascimento" class="form-control" [value]="service.formData.DataDeNascimento | date:'dd/MM/yyyy'" placeholder="Data de Nascimento" required>
+        </div>
+        <div *ngIf="!service.readonly" class="input-group">
+          <div class="input-group-prepend">
+            <div class="input-group-text bg-white">
+              <i class="fas fa-calendar-day" [class.red-icon]="DataDeNascimento.invalid && DataDeNascimento.touched"></i>
+            </div>
+          </div>
+            <input type="text" data-toggle="tooltip" title="Data de Nascimento" onfocus="(this.type='date')" onblur="(this.type='text')" id="DataDeNascimento" name="DataDeNascimento" #DataDeNascimento="ngModel" [(ngModel)]="service.formData.DataDeNascimento" class="form-control" placeholder="Data de Nascimento" required>
+        </div>
+    </div>
+    <div class="form-group">
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text bg-white" [class.red-icon]="Sexo.invalid">Sexo</span>
+        </div>
+        <select class="form-control" name="Sexo" [disabled]="service.readonly" #Sexo="ngModel" [(ngModel)]="service.formData.Sexo" class="form-control" required>
+          <option value=""></option>
+          <option value="Masculino">Masculino</option>
+          <option value="Feminino">Feminino</option>
+          <option value="Outro">Outro</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <div class="input-group-text bg-white">
+            <i class="fas fa-map-marker-alt"></i>
+          </div>
+        </div>
+        <input name="CEP" #CEP="ngModel" (blur)="consultaCEP(service.formData.CEP)" [readonly]="service.readonly" [(ngModel)]="service.formData.CEP" class="form-control" placeholder="CEP">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-7">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <div class="input-group-text bg-white">
+              <i class="fas fa-home"></i>
+            </div>
+          </div>
+          <input name="Endereco" [readonly]="service.readonly" #Endereco="ngModel" [(ngModel)]="service.formData.Endereco" class="form-control" placeholder="Endereço">
+        </div>
+      </div>
+      <div class="form-group col-md-5">
+        <div class="input-group">
+          <input type="number" name="Numero" [readonly]="service.readonly" #Numero="ngModel" [(ngModel)]="service.formData.Numero" class="form-control" placeholder="Número">
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="input-group">
+        <input name="Complemento" [readonly]="service.readonly" #Complemento="ngModel" [(ngModel)]="service.formData.Complemento" class="form-control" placeholder="Complemento">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-7">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <div class="input-group-text bg-white">
+              <i class="fas fa-city"></i>
+            </div>
+          </div>
+          <input name="Bairro" [readonly]="service.readonly" #Bairro="ngModel" [(ngModel)]="service.formData.Bairro" class="form-control" placeholder="Bairro">
+        </div>
+      </div>
+        <div class="form-group col-md-5">
+          <div class="input-group">
+            <input name="Estado" [readonly]="service.readonly" #Estado="ngModel" [(ngModel)]="service.formData.Estado" class="form-control" placeholder="Estado">
+          </div>
+        </div>
+    </div>
+    <div class="form-group">
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <div class="input-group-text bg-white">
+            <i class="fas fa-landmark"></i>
+          </div>
+        </div>
+        <input name="Cidade" [readonly]="service.readonly" #Cidade="ngModel" [(ngModel)]="service.formData.Cidade" class="form-control" placeholder="Cidade">
+      </div>
+    </div>
+    <div class="form-group">
+      <button class="btn btn-success col-md-6" [disabled]="form.invalid || service.readonly"><i class="fas fa-database"></i> Finalizar</button>
+      <button class="btn btn-danger col-md-6" (click)="paginaInicial()"><i class="fas fa-window-close"></i> Voltar</button>
+    </div>
+  </form>
+</div>
