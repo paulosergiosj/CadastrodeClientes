@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ClienteService } from 'src/app/shared/cliente.service';
 import { NgForm } from '@angular/forms';
-import { formatCurrency, DatePipe } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
 import { Cliente } from 'src/app/shared/cliente.model';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cliente',
@@ -15,8 +14,7 @@ export class ClienteComponent implements OnInit {
   constructor(
     public service: ClienteService,
     private toastr: ToastrService,
-    private router: Router,
-    private datePipe: DatePipe
+    private router: Router
   ) {}
 
   ngOnInit() {
